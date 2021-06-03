@@ -1,39 +1,55 @@
 # -*- Makefile -*-
 
-SRCS = $(wildcard ./srcs/*.c)
+SRCS_PS = $(wildcard ./srcs/push_swap/*.c)
 
-OBJS = $(SRCS:%.c=%.o)
+SRCS_CH = $(wildcard ./srcs/checker/*.c)
 
-NAME = push_swap
+OBJS_PS = $(SRCS_PS:%.c=%.o)
+
+OBJS_CH = $(SRCS_CH:%.c=%.o)
+
+PS = push_swap
+
+CHECK = checker
 
 LIBFT = libft/libft.a
 
 INCLUDES = -I includes
 
 CC = gcc
-FLAGS = -Wall -Wextra -Werror
-#AR = ar rcsv
+FLAGS = #-Wall -Wextra -Werror
+AR = ar rcsv
 RM = rm -rf
 
 %.o: %.c
 	$(CC) $(FLAGS) -c $< $(INCLUDES) -o $@ 
 
-all: $(NAME)
+all: $(PS) $(CHECK)
 
-$(NAME): $(LIBFT) $(OBJS)
-	$(CC) $(FLAGS) $(OBJS) $(LIBFT) $(INCLUDES) -o $(NAME)
+ps:  $(PS)
+
+$(PS): $(LIBFT) $(OBJS_PS)
+	$(AR) push_swap.a $(OBJS_PS)
+	$(CC) $(FLAGS) $(OBJS_PS) $(LIBFT) -o $(PS)
+
+check: $(CHECK)
+
+$(CHECK): $(LIBFT) $(OBJS_CH)
+	$(CC) $(FLAGS) $(OBJS_CH) $(LIBFT) push_swap.a -o $(CHECK)
 
 $(LIBFT):
 	make -C libft
 
 clean:
-	$(RM) $(OBJS)
+	$(RM) $(OBJS_CH)
+	$(RM) $(OBJS_PS)
 	make clean -C libft
 
 fclean: clean
-	$(RM) $(NAME)
+	$(RM) push_swap.a
+	$(RM) $(PS) $(CHECK)
 	make fclean -C libft
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re ps check
