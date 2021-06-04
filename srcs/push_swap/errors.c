@@ -5,10 +5,10 @@ int		is_repeated(int *array, int len)
 	int i = 0;
 	int j = 0;
 
-	while (i++ < len)
+	while (i++ < len - 1)
 	{
 		j = i + 1;
-		while (j++ < len)
+		while (j++ < len - 1)
 		{
 			if (array[i] == array[j])
 				return (1);
