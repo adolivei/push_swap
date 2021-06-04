@@ -8,6 +8,8 @@ void	push_a(t_stack *stack, int c)
 	int len_b;
 	int i = 0;
 
+		// ft_putstr_fd("push_a\n", 1);
+
 	len_a = stack->len_a;
 	len_b = stack->len_b;
 	if (len_b)
@@ -38,6 +40,8 @@ void	push_b(t_stack *stack, int c)
 	int len_a;
 	int len_b;
 	int i = 0;
+
+			// ft_putstr_fd("push_b\n", 1);
 
 	len_a = stack->len_a;
 	len_b = stack->len_b;

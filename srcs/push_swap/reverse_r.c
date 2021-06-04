@@ -7,6 +7,8 @@ void	reverse_a(t_stack *stack)
 	int tmp;
 	int len = 0;
 
+	// ft_putstr_fd("reverse_a\n", 1);
+
 	len = stack->len_a;
 	tmp = stack->a[len - 1];
 	while (len-- > 0)
@@ -23,6 +25,8 @@ void	reverse_b(t_stack *stack)
 {
 	int tmp;
 	int len = 0;
+
+	// ft_putstr_fd("reverse_b\n", 1);
 
 	len = stack->len_b;
 	tmp = stack->b[len - 1];

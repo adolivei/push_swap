@@ -8,6 +8,9 @@ void	rotate_a(t_stack *stack)
 	int i;
 	int len;
 
+
+		// ft_putstr_fd("rotate_a\n", 1);
+
 	i = -1;
 	len = stack->len_a;
 	tmp = stack->a[0];
@@ -23,6 +26,8 @@ void	rotate_b(t_stack *stack)
 	int	tmp;
 	int i;
 	int len;
+
+			// ft_putstr_fd("rotate_b\n", 1);
 
 	i = -1;
 	len = stack->len_b;

@@ -22,18 +22,6 @@ void	apply_orders(t_stack *stack, char *orders)
 	{
 		push_b(stack, 1);
 	}
-	else if (ft_strncmp(orders, "ra", 2) == 0)
-	{
-		rotate_rr(stack, 1, 0, 1);
-	}
-	else if (ft_strncmp(orders, "rb", 2) == 0)
-	{
-		rotate_rr(stack, 0, 1, 1);
-	}
-	else if (ft_strncmp(orders, "rr", 2) == 0)
-	{
-		rotate_rr(stack, 1, 1, 1);
-	}
 	else if (ft_strncmp(orders, "rra", 3) == 0)
 	{
 		reverse_ab(stack, 1, 0, 1);
@@ -46,8 +34,20 @@ void	apply_orders(t_stack *stack, char *orders)
 	{
 		reverse_ab(stack, 1, 1, 1);
 	}
+	else if (ft_strncmp(orders, "ra", 2) == 0)
+	{
+		rotate_rr(stack, 1, 0, 1);
+	}
+	else if (ft_strncmp(orders, "rb", 2) == 0)
+	{
+		rotate_rr(stack, 0, 1, 1);
+	}
+	else if (ft_strncmp(orders, "rr", 2) == 0)
+	{
+		rotate_rr(stack, 1, 1, 1);
+	}
 	else
-		write(2, "Error\n", 6);
+		write(2, "Error #4\n", 9);
 	// printf("%s\n", orders);
 }
 

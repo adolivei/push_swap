@@ -7,6 +7,8 @@ void    swap_a(t_stack *stack)
 {
     int tmp;
 
+    		// ft_putstr_fd("swap_a\n", 1);
+
     tmp = 0;
     tmp = stack->a[0];
     stack->a[0] = stack->a[1];
@@ -19,6 +21,8 @@ void    swap_a(t_stack *stack)
 void    swap_b(t_stack *stack)
 {
     int tmp;
+
+        		// ft_putstr_fd("swap_b\n", 1);
 
     tmp = 0;
     tmp = stack->b[0];
