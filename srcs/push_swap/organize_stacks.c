@@ -25,7 +25,7 @@ int r_or_rr(int *array, int len, int nb)
 
 void	do_the_three(t_stack *stack)
 {
-	int min = 0;
+	int min = INT_MAX;
 	int min_i = 0;
 
 	min = get_min(stack->a, stack->len_a);
@@ -66,9 +66,9 @@ void	do_the_three(t_stack *stack)
 
 }
 
-void	do_the_five(t_stack *stack)
+void	do_the_four(t_stack *stack)
 {
-	int max = 0;
+	int max = INT_MIN;
 	int max_i = 0;
 	int r = 0;
 
@@ -84,36 +84,64 @@ void	do_the_five(t_stack *stack)
 			reverse_ab(stack, 1, 0, 0);
 	}
 	push_b(stack, 0);
-	if (stack->len_a == 4)
-	{
-		max = get_max(stack->a, stack->len_a);
-		max_i = 0;
-		while (stack->a[max_i] != max)
-			max_i++;
-		while (stack->a[0] != max)
-		{
-			if (r)
-				rotate_rr(stack, 1, 0, 0);
-			else
-				reverse_ab(stack, 1, 0, 0);
-		}
-		push_b(stack, 0);
-	}
 	do_the_three(stack);
-	if (stack->b[0] < stack->b[1])
-		swap_ab(stack, 0, 1, 0);
 	push_a(stack, 0);
-	push_a(stack, 0);
-	rotate_rr(stack, 1, 0, 0);
 	rotate_rr(stack, 1, 0, 0);
 }
 
-void    organize_stacks(t_stack *stack, int mdn)
+void	do_the_five(t_stack *stack, int mdn)
+{
+	int r = 0;
+
+	if (stack->len_a == 4)
+		do_the_four(stack);
+	else
+	{
+		while (stack->len_a > 3)
+		{
+			if (stack->a[0] > mdn)
+				push_b(stack, 0);
+			else
+			{
+				if (stack->a[stack->len_a - 1] < stack->a[1])
+					r = 1;
+				if (r)
+					rotate_rr(stack, 1, 0, 0);
+				else
+					reverse_ab(stack, 1, 0, 0);
+			}
+		}
+		do_the_three(stack);
+		if (stack->b[0] > stack->b[1])
+		{
+			push_a(stack, 0);
+			push_a(stack, 0);
+			rotate_rr(stack, 1, 0, 0);
+			rotate_rr(stack, 1, 0, 0);
+		}
+		else if (stack->b[0] < stack->b[1])
+		{
+			push_a(stack, 0);
+			rotate_rr(stack, 1, 0, 0);
+			push_a(stack, 0);
+			rotate_rr(stack, 1, 0, 0);
+		}
+	}
+}
+
+// tb is the third bigger nb of the stack
+void    organize_stacks(t_stack *stack, int mdn, int tb)
 {
 	if (stack->len_a == 3)
 		do_the_three(stack);
 	else if (stack->len_a <= 5)
-		do_the_five(stack);
+		do_the_five(stack, mdn);
+	else if (stack->len_a <= 100)
+		do_the_hundred(stack, mdn, tb);
+	// else if (stack->len_a > 100)
+	// 	do_the_huge(stack, mdn);
+
+	print_stacks(stack);
 
 	// divide stacks: a gets the smaller nbrs, b the bigger (not)
 	// r = r_or_rr(stack->a, stack->len_a, mdn);
