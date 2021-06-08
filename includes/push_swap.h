@@ -5,6 +5,9 @@
 #include <stdio.h>
 #include <limits.h>
 
+//// very important
+// numbergenerator.org/randomnumbergenerator
+
 typedef struct  s_stack
 {
 	int *a;
@@ -12,6 +15,24 @@ typedef struct  s_stack
 	int len_a;
 	int len_b;
 }               t_stack;
+
+// flags a to d are the several options that may occur
+// option a is for ra + rb
+// option b is for rra + rrb
+// option c is for ra + rrb
+// option d is for rra + rb
+typedef struct	s_flags
+{
+	int nra;
+	int nrb;
+	int nrra;
+	int nrrb;
+	int a;
+	int b;
+	int c;
+	int d;
+
+}				t_flags;
 
 //// swaps
 void    swap_ab(t_stack *stack, int a, int b, int c);
@@ -38,7 +59,14 @@ int		get_median(int *array, int len);
 void    organize_stacks(t_stack *stack, int mdn, int tb);
 void    do_the_hundred(t_stack *stack, int mdn, int tb);
 void	do_the_three(t_stack *stack);
+
+//// decisions
 int		r_or_rr(int *array, int len, int nb);
+int		r_or_rr_lol(int *array, int len, int nb);
+int		r_or_rr_push(int *array, int len, int nb);
+int		get_rrr(int *array, int len, int nb, int r);
+// int		get_rrr_push(int *array, int len, int nb);
+void	decision_rrr(t_stack *stack, int mdn);
 
 ///// utils
 void	init_stack(t_stack *stack, int len);

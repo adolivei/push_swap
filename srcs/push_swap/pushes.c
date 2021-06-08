@@ -29,7 +29,7 @@ void	push_a(t_stack *stack, int c)
 		}
 		if (!c)
 			ft_putstr_fd("pa\n", 1);
-		print_stacks(stack);
+		// print_stacks(stack);
 	}
 }
 
@@ -62,6 +62,6 @@ void	push_b(t_stack *stack, int c)
 		}
 		if (!c)
 			ft_putstr_fd("pb\n", 1);
-		print_stacks(stack);
+		// print_stacks(stack);
 	}
 }

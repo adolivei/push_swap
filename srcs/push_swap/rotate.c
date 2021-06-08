@@ -67,5 +67,5 @@ void	rotate_rr(t_stack *stack, int a, int b, int c)
 		else if (!a && b)
 			ft_putstr_fd("rb\n", 1);
 	}
-			print_stacks(stack);
+			// print_stacks(stack);
 }

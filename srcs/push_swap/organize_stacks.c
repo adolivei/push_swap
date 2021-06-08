@@ -1,28 +1,5 @@
 #include "../../includes/push_swap.h"
 
-// function to check if a given nb is closer to the end or the beggining of an array
-// it will tell us if it's better to rotate or reverse rotate the stack
-// if rotate, returns 1
-// if reverse rotate returns 0
-int r_or_rr(int *array, int len, int nb)
-{
-	int r = 0;
-	int rr = len - 1;
-
-	while (array[r] != nb)
-		r++;
-
-	while (array[rr] != nb)
-		rr--;
-
-	rr = len - rr;
-
-	if (r > rr)
-		return (0);
-	else
-		return (1);
-}
-
 void	do_the_three(t_stack *stack)
 {
 	int min = INT_MAX;
@@ -136,12 +113,12 @@ void    organize_stacks(t_stack *stack, int mdn, int tb)
 		do_the_three(stack);
 	else if (stack->len_a <= 5)
 		do_the_five(stack, mdn);
-	else if (stack->len_a <= 100)
+	else if (stack->len_a <= 500)
 		do_the_hundred(stack, mdn, tb);
 	// else if (stack->len_a > 100)
 	// 	do_the_huge(stack, mdn);
 
-	print_stacks(stack);
+	// print_stacks(stack);
 
 	// divide stacks: a gets the smaller nbrs, b the bigger (not)
 	// r = r_or_rr(stack->a, stack->len_a, mdn);

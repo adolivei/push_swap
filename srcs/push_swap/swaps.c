@@ -57,5 +57,5 @@ void    swap_ab(t_stack *stack, int a, int b, int c)
         else if (!a && b)
             ft_putstr_fd("sb\n", 1);
     }
-    		print_stacks(stack);
+    		// print_stacks(stack);
 }
