@@ -17,7 +17,7 @@ int		update_size(t_stack *stack)
 	return (size);
 }
 
-void	do_the_hundred(t_stack *stack, int mdn, int tb)
+void	do_the_hundred(t_stack *stack, int mdn)
 {
 	int r = 0;
 	int min = INT_MAX;

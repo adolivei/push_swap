@@ -107,16 +107,17 @@ void	do_the_five(t_stack *stack, int mdn)
 }
 
 // tb is the third bigger nb of the stack
-void    organize_stacks(t_stack *stack, int mdn, int tb)
+void    organize_stacks(t_stack *stack, int mdn, int *phony)
 {
-	if (stack->len_a == 3)
-		do_the_three(stack);
-	else if (stack->len_a <= 5)
-		do_the_five(stack, mdn);
-	else if (stack->len_a <= 500)
-		do_the_hundred(stack, mdn, tb);
-	// else if (stack->len_a > 100)
-	// 	do_the_huge(stack, mdn);
+	// if (stack->len_a == 3)
+	// 	do_the_three(stack);
+	// else if (stack->len_a <= 5)
+	// 	do_the_five(stack, mdn);
+	// else if (stack->len_a <= 100)
+	// 	do_the_hundred(stack, mdn);
+	// else
+		do_the_huge(stack, phony);
+
 
 	// print_stacks(stack);
 

@@ -40,10 +40,10 @@ int main(int argc, char *argv[])
 			return (0);
 		}
 		mdn = get_median(phony, stack.len_a);
-		tb = get_tb(phony, stack.len_a);
-		free(phony);
-		organize_stacks(&stack, mdn, tb);
+		// tb = get_tb(phony, stack.len_a); // delete
+		organize_stacks(&stack, mdn, phony);
 	}
+	free(phony);
 	free(stack.a);
 	free(stack.b);
 	return (0);

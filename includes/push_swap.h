@@ -34,6 +34,12 @@ typedef struct	s_flags
 
 }				t_flags;
 
+typedef struct	s_hold
+{
+
+
+}				t_hold;
+
 //// swaps
 void    swap_ab(t_stack *stack, int a, int b, int c);
 
@@ -53,19 +59,19 @@ int		is_repeated(int *array, int len);
 
 //// median
 int		get_median(int *array, int len);
-// int		*bubble_sort(int *array, int len);
+int		*bubble_sort(int *array, int len); // del
 
 //// organize_stacks
-void    organize_stacks(t_stack *stack, int mdn, int tb);
-void    do_the_hundred(t_stack *stack, int mdn, int tb);
+void    organize_stacks(t_stack *stack, int mdn, int *phony);
+void    do_the_hundred(t_stack *stack, int mdn);
 void	do_the_three(t_stack *stack);
+void	do_the_huge(t_stack *stack, int *phony);
 
 //// decisions
-int		r_or_rr(int *array, int len, int nb);
-int		r_or_rr_lol(int *array, int len, int nb);
-int		r_or_rr_push(int *array, int len, int nb);
+int		r_or_rr(int *array, int len, int nb); /* 🤦‍♂️ */
+int		r_or_rr_lol(int *array, int len, int nb); /* 🤦‍♂️ */
+int		r_or_rr_push(int *array, int len, int nb); /* 🤦‍♂️ */
 int		get_rrr(int *array, int len, int nb, int r);
-// int		get_rrr_push(int *array, int len, int nb);
 void	decision_rrr(t_stack *stack, int mdn);
 
 ///// utils
@@ -73,6 +79,7 @@ void	init_stack(t_stack *stack, int len);
 int		not_in_order(int *array, int len);
 int		not_empty(int *array, int len);
 int		smaller_exists(int *array, int len, int nb);
+int		bigger_exists(int *array, int len, int nb);
 int		get_min(int *array, int len);
 int		get_max(int *array, int len);
 int		get_tb(int *array, int len); // third bigger nb of the stack

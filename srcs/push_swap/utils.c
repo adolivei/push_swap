@@ -62,6 +62,26 @@ int		smaller_exists(int *array, int len, int nb)
 	return (j);
 }
 
+// returns 1 if one of the elements in the array is bigger than nb
+// 0 otherwise
+int		bigger_exists(int *array, int len, int nb)
+{
+	int i = 0;
+	int j = 0;
+	int *ar;
+
+	ar = array;
+	while (i < len)
+	{
+		if (ar[i] >= nb)
+			j = 1;
+		i++;
+	}
+	return (j);
+}
+
+
+
 int		get_min(int *array, int len)
 {
 	int min = INT_MAX;
