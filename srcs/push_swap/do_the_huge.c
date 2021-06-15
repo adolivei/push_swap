@@ -45,12 +45,30 @@ int		*get_abstract(int *real, int *fake, int len)
 	return (abstract);
 }
 
-// still need to apply a way to decide the chunk size upon the lenght of the input
-void	do_the_chunk(t_stack *stack, int max)
+int		get_chunksize(int len)
+{
+	int size = 0;
+
+	if (len < 50)
+		size = len;
+	else if (len >= 50 && len < 99)
+		size = 30;
+	else if (len >= 99 && len < 200)
+		size = 20;
+	else
+		size = 40;
+	return (size);
+}
+
+// gets every chunk from stack a to stack b
+void	do_the_chunk(t_stack *stack, int max, int chunk_size)
 {
 	static int chunk_min = 0;
-	static int chunk_max = 39;
+	static int chunk_max = 0;
 	int r = 0;
+
+	if (chunk_max == 0)
+		chunk_max = chunk_size - 1;
 
 	while (smaller_exists(stack->a, stack->len_a, chunk_max))
 	{
@@ -74,64 +92,66 @@ void	do_the_chunk(t_stack *stack, int max)
 		}
 	}
 
-	chunk_min += 40;
-	chunk_max += 40;
+	chunk_min += chunk_size;
+	chunk_max += chunk_size;
 }
 
 // goddam this is now brig bain time
 void	do_the_huge(t_stack *stack, int *phony)
 {
-	int chunks = 0;
+	int chunk_size = 0;
 	int *tmp;
 	int max = INT_MIN;
 	int r = 0;
 
-	tmp = array_dup(stack->a, stack->len_a);
-	free (stack->a);
-	stack->a = get_abstract(tmp, phony, stack->len_a);
-	free (tmp);
-	max = get_max(stack->a, stack->len_a);
-	chunks = stack->len_a / 10 + 1;
-	while (chunks > 0)
+
+	if (not_in_order(stack->a, stack->len_a))
 	{
-		do_the_chunk(stack, max);
-		chunks--;
+
+		tmp = array_dup(stack->a, stack->len_a);
+		free (stack->a);
+		stack->a = get_abstract(tmp, phony, stack->len_a);
+		free (tmp);
+		max = get_max(stack->a, stack->len_a);
+		chunk_size = get_chunksize(stack->len_a);
+		while (stack->len_a > 1)
+		{
+			do_the_chunk(stack, max, chunk_size);
+		}
+		push_b(stack, 0);
+
+
+		// numbers inside stack b are divided by chunks, but the chunks are not ordered within theirself
+		// ex: first chunk has all the nbrs between 0 and 9 together but not ordered
+		// and the second chunk (with 10-19) will be on top of chunk 1 and so on
+		// we first need to order the last chunk inside stack a and then push everything from stack b to it, by order
+
+		while (stack->b[0] != max)
+		{
+			rotate_rr(stack, 0, 1, 0);
+		}
+		push_a(stack, 0);
+		while (not_empty(stack->b, stack->len_b))
+		{
+			r = r_or_rr(stack->b, stack->len_b, stack->a[0] - 1);
+			if (r)
+			{
+				while (stack->b[0] != stack->a[0] - 1)
+					rotate_rr(stack, 0, 1, 0);
+				push_a(stack, 0);
+			}
+			else
+			{
+				while (stack->b[0] != stack->a[0] - 1)
+					reverse_ab(stack, 0, 1, 0);
+				push_a(stack, 0);
+			}
+		}
 	}
-	push_b(stack, 0);
 
 
-	// numbers inside stack b are divided by chunks, but the chunks are not ordered within itself
-	// ex: first chunk has all the nbrs between 0 and 9 together but not ordered
-	// and the second chunk (with 10-19) will be on top of chunk 1 and so on
-	// we first need to order the last chunk inside stack a and then push everything from stack b to it, by order
-
-	while (stack->b[0] != max)
-	{
-		rotate_rr(stack, 0, 1, 0);
-	}
 	push_a(stack, 0);
 
-	while (not_empty(stack->b, stack->len_b))
-	{
-		r = r_or_rr(stack->b, stack->len_b, stack->a[0] - 1);
-		if (r)
-		{
-			while (stack->b[0] != stack->a[0] - 1)
-				rotate_rr(stack, 0, 1, 0);
-			push_a(stack, 0);
-		}
-		else
-		{
-			while (stack->b[0] != stack->a[0] - 1)
-				reverse_ab(stack, 0, 1, 0);
-			push_a(stack, 0);
-		}
-	}
-
-			push_a(stack, 0);
-		// print_stacks(stack);
-
-
-
+	// print_stacks(stack);
 
 }

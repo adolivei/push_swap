@@ -85,7 +85,7 @@ int	main(int argc, char *argv[])
 	// stack.b = (int *)malloc(sizeof(int) * stack.len_a);
 	init_stack(&stack, argc - 1);
 
-	if (argc > 2)
+	if (argc > 1)
 	{
 		while (++i < argc)
 		{

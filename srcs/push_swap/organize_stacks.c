@@ -70,38 +70,41 @@ void	do_the_five(t_stack *stack, int mdn)
 {
 	int r = 0;
 
-	if (stack->len_a == 4)
-		do_the_four(stack);
-	else
+	if (not_in_order(stack->a, stack->len_a))
 	{
-		while (stack->len_a > 3)
+		if (stack->len_a == 4)
+			do_the_four(stack);
+		else
 		{
-			if (stack->a[0] > mdn)
-				push_b(stack, 0);
-			else
+			while (stack->len_a > 3)
 			{
-				if (stack->a[stack->len_a - 1] < stack->a[1])
-					r = 1;
-				if (r)
-					rotate_rr(stack, 1, 0, 0);
+				if (stack->a[0] > mdn)
+					push_b(stack, 0);
 				else
-					reverse_ab(stack, 1, 0, 0);
+				{
+					if (stack->a[stack->len_a - 1] < stack->a[1])
+						r = 1;
+					if (r)
+						rotate_rr(stack, 1, 0, 0);
+					else
+						reverse_ab(stack, 1, 0, 0);
+				}
 			}
-		}
-		do_the_three(stack);
-		if (stack->b[0] > stack->b[1])
-		{
-			push_a(stack, 0);
-			push_a(stack, 0);
-			rotate_rr(stack, 1, 0, 0);
-			rotate_rr(stack, 1, 0, 0);
-		}
-		else if (stack->b[0] < stack->b[1])
-		{
-			push_a(stack, 0);
-			rotate_rr(stack, 1, 0, 0);
-			push_a(stack, 0);
-			rotate_rr(stack, 1, 0, 0);
+			do_the_three(stack);
+			if (stack->b[0] > stack->b[1])
+			{
+				push_a(stack, 0);
+				push_a(stack, 0);
+				rotate_rr(stack, 1, 0, 0);
+				rotate_rr(stack, 1, 0, 0);
+			}
+			else if (stack->b[0] < stack->b[1])
+			{
+				push_a(stack, 0);
+				rotate_rr(stack, 1, 0, 0);
+				push_a(stack, 0);
+				rotate_rr(stack, 1, 0, 0);
+			}
 		}
 	}
 }
@@ -109,13 +112,11 @@ void	do_the_five(t_stack *stack, int mdn)
 // tb is the third bigger nb of the stack
 void    organize_stacks(t_stack *stack, int mdn, int *phony)
 {
-	// if (stack->len_a == 3)
-	// 	do_the_three(stack);
-	// else if (stack->len_a <= 5)
-	// 	do_the_five(stack, mdn);
-	// else if (stack->len_a <= 100)
-	// 	do_the_hundred(stack, mdn);
-	// else
+	if (stack->len_a == 3)
+		do_the_three(stack);
+	else if (stack->len_a <= 5)
+		do_the_five(stack, mdn);
+	else
 		do_the_huge(stack, phony);
 
 
