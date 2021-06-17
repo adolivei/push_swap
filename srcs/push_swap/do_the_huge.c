@@ -97,21 +97,20 @@ void	do_the_chunk(t_stack *stack, int max, int chunk_size)
 }
 
 // goddam this is now brig bain time
-void	do_the_huge(t_stack *stack, int *phony)
+void	do_the_huge(t_stack *stack)
 {
 	int chunk_size = 0;
 	int *tmp;
 	int max = INT_MIN;
 	int r = 0;
 
-
 	if (not_in_order(stack->a, stack->len_a))
 	{
 
-		tmp = array_dup(stack->a, stack->len_a);
-		free (stack->a);
-		stack->a = get_abstract(tmp, phony, stack->len_a);
-		free (tmp);
+		// tmp = array_dup(stack->a, stack->len_a);
+		// free (stack->a);
+		// stack->a = get_abstract(tmp, phony, stack->len_a);
+		// free (tmp);
 		max = get_max(stack->a, stack->len_a);
 		chunk_size = get_chunksize(stack->len_a);
 		while (stack->len_a > 1)

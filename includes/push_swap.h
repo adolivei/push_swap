@@ -34,12 +34,6 @@ typedef struct	s_flags
 
 }				t_flags;
 
-typedef struct	s_hold
-{
-
-
-}				t_hold;
-
 //// swaps
 void    swap_ab(t_stack *stack, int a, int b, int c);
 
@@ -62,10 +56,17 @@ int		get_median(int *array, int len);
 int		*bubble_sort(int *array, int len); // del
 
 //// organize_stacks
-void    organize_stacks(t_stack *stack, int mdn, int *phony);
+int		organize_stacks(t_stack *stack);
 void    do_the_hundred(t_stack *stack, int mdn);
 void	do_the_three(t_stack *stack);
-void	do_the_huge(t_stack *stack, int *phony);
+void	do_the_huge(t_stack *stack);
+
+//// stupid case for when the arguments come together as one string, instead of separate ints
+int		string_to_array(char *s);
+
+//// abstract utils
+int		*array_dup(int *array, int len);
+int		*get_abstract(int *real, int *fake, int len);
 
 //// decisions
 int		r_or_rr(int *array, int len, int nb); /* 🤦‍♂️ */
@@ -82,7 +83,6 @@ int		smaller_exists(int *array, int len, int nb);
 int		bigger_exists(int *array, int len, int nb);
 int		get_min(int *array, int len);
 int		get_max(int *array, int len);
-int		get_tb(int *array, int len); // third bigger nb of the stack
 
 //// debug
 void	print_stacks(t_stack *stack);
