@@ -17,7 +17,7 @@ LIBFT = libft/libft.a
 INCLUDES = -I includes
 
 CC = gcc
-FLAGS = #-Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror
 AR = ar rcsv
 RM = rm -rf
 

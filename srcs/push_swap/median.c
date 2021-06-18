@@ -1,13 +1,15 @@
 #include "../../includes/push_swap.h"
 
-// bubble sorts an array of ints of certain len and returns it
-int		*bubble_sort(int *array, int len)
+int	*bubble_sort(int *array, int len)
 {
-	int i = 1;
-	int j = 0;
-	int tmp = 0;
+	int	i;
+	int	j;
+	int	tmp;
 
-	while(i < len)
+	i = 1;
+	j = 0;
+	tmp = 0;
+	while (i < len)
 	{
 		if (array[j] > array[i])
 		{
@@ -23,20 +25,21 @@ int		*bubble_sort(int *array, int len)
 	return (array);
 }
 
-int		seek_median(int *array, int len)
+int	seek_median(int *array, int len)
 {
-	int i = 0;
-	int half = 0;
+	int	i;
+	int	half;
 
+	i = 0;
 	half = len / 2;
 	while (i < half)
 		i++;
 	return (array[i]);
 }
 
-int		get_median(int *array, int len)
+int	get_median(int *array, int len)
 {
-	int mdn = 0;
+	int	mdn;
 
 	array = bubble_sort(array, len);
 	mdn = seek_median(array, len);
