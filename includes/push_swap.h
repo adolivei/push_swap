@@ -1,23 +1,23 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-#include "../libft/libft.h"
-#include <stdio.h>
-#include <limits.h>
+# include "../libft/libft.h"
+# include <stdio.h>
+# include <limits.h>
 
 //// very important
 // numbergenerator.org/randomnumbergenerator
 
-typedef struct  s_stack
+typedef struct s_stack
 {
-	int *a;
-	int *b;
-	int len_a;
-	int len_b;
-}               t_stack;
+	int	*a;
+	int	*b;
+	int	len_a;
+	int	len_b;
+}	t_stack;
 
 //// swaps
-void    swap_ab(t_stack *stack, int a, int b, int c);
+void	swap_ab(t_stack *stack, int a, int b, int c);
 
 //// pushes
 void	push_a(t_stack *stack, int c);
@@ -30,7 +30,7 @@ void	rotate_rr(t_stack *stack, int a, int b, int c);
 void	reverse_ab(t_stack *stack, int a, int b, int c);
 
 //// error
-int     check_errors(char *array);
+int		check_errors(char *array);
 int		is_repeated(int *array, int len);
 
 //// median
@@ -43,7 +43,7 @@ void	do_the_three(t_stack *stack);
 void	do_the_five(t_stack *stack, int mdn);
 void	do_the_huge(t_stack *stack);
 
-//// stupid case for when the arguments come together as one string, instead of separate ints
+//// case when the arguments come together as one string
 int		string_to_array(char *s);
 
 //// abstract utils
@@ -63,19 +63,13 @@ int		bigger_exists(int *array, int len, int nb);
 int		get_min(int *array, int len);
 int		get_max(int *array, int len);
 int		free_stacks(t_stack *stack, int w);
-
+int		first_is_nb(char a, char b);
+int		n_is_nb(char a, char b, char c);
+int		invalid_char(char c);
 int		*get_stack(char *s, int len);
 int		get_stack_len(char *s);
-
 int		*array_dup(int *array, int len);
 int		get_index_position(int *array, int nb);
 int		*get_abstract(int *real, int *fake, int len);
-
-
-//// debug
-// void	print_stacks(t_stack *stack);
-// void	print_array(int *array, int len);
-
-
 
 #endif

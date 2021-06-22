@@ -23,36 +23,14 @@ int	invalid_char(char c)
 	return (0);
 }
 
-int	get_stack_len(char *s)
-{
-	int	len;
-	int	i;
-
-	len = 0;
-	if (first_is_nb(s[0], s[1]))
-		len++;
-	i = 0;
-	while (s[i])
-	{
-		if (invalid_char(s[i]))
-		{
-			write(2, "Error\n", 6);
-			return (0);
-		}
-		if (n_is_nb(s[i], s[i + 1], s[i + 2]))
-			len++;
-		i++;
-	}
-	return (len);
-}
-
 int	do_your_shit(char *s, int string_i, int *array, int array_i)
 {
 	while (s[string_i])
 	{
 		if (n_is_nb(s[string_i], s[string_i + 1], s[string_i + 2]))
 		{
-			if (ft_atol(&s[string_i + 1]) < INT_MIN || ft_atol(&s[string_i + 1]) > INT_MAX)
+			if (ft_atol(&s[string_i + 1]) < INT_MIN
+				|| ft_atol(&s[string_i + 1]) > INT_MAX)
 			{
 				free (array);
 				return (1);
@@ -86,19 +64,3 @@ int	*get_stack(char *s, int len)
 		return (NULL);
 	return (array);
 }
-
-
-// while (s[string_i])
-// {
-// 	if (n_is_nb(s[string_i], s[string_i + 1], s[string_i + 2]))
-// 	{
-// 		if (ft_atol(&s[string_i + 1]) < INT_MIN || ft_atol(&s[string_i + 1]) > INT_MAX)
-// 		{
-// 			free (array);
-// 			return (NULL);
-// 		}
-// 		array[array_i] = ft_atoi(&s[string_i + 1]);
-// 		array_i++;
-// 	}
-// 	string_i++;
-// }

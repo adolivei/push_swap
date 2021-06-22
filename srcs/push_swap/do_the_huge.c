@@ -72,7 +72,6 @@ void	path2(t_stack *stack, int r)
 void	do_the_huge(t_stack *stack)
 {
 	int	chunk_size;
-	// int	*tmp;
 	int	max;
 	int	r;
 

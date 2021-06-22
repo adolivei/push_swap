@@ -13,9 +13,9 @@
 #ifndef LIBFT_H
 # define LIBFT_H
 
-#ifndef BUFFER_SIZE
-# define	BUFFER_SIZE 42
-#endif
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 
 # include <stdlib.h>
 # include <unistd.h>
@@ -114,10 +114,10 @@ void				ft_lstclear(t_list **lst, void (*del)(void*));
 
 void				ft_lstiter(t_list *lst, void (*f)(void *));
 
-int					get_next_line(int fd, char **line);
-
 long				ft_atol(const char *str);
 
-int			is_space(char c);
+int					is_space(char c);
+
+int					get_next_line(int fd, char **line);
 
 #endif
