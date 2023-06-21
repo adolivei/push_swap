@@ -20,5 +20,3 @@ rb : rotate b - shift up all elements of stack b by 1. The first element becomes
 rr : ra and rb at the same time.
 
 rra : reverse rotate a - shift down all elements of stack a by 1. The flast element becomes the first one.
-
--- WIP --
